@@ -1,21 +1,24 @@
 const express = require("express");
-const app = express();
 const path = require("path");
 
-app.disable('x-powered-by')
+const server = express();
+const PORT = 3000;
 
-//Settings
-app.set("port", 3000);
-app.set("views", path.join(__dirname, "src/views"));
-app.set("view engine", "ejs");
+// Settings
+server.set("port", PORT);
+server.set("views", path.join(__dirname, "src/views"));
+server.set("view engine", "ejs");
 
-//Routers
-app.use(require("./src/routes/route"));
+// Disable x-powered-by header
+server.disable('x-powered-by');
 
-//Static files
-app.use(express.static(path.join(__dirname, "src/public")));
+// Static files
+server.use(express.static(path.join(__dirname, "src/public")));
 
-//Listening the server
-app.listen(app.get("port"), () => {
-  console.log("Server on port", app.get("port"));
+// Routers
+server.use(require("./src/routes/route"));
+
+// Listening the server
+server.listen(PORT, () => {
+  console.log("Server on port", PORT);
 });

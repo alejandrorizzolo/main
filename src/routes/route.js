@@ -1,15 +1,16 @@
 const express = require("express");
 const routes = express.Router();
 
-//Home
-routes.get("/", (req, res) => {
-  //res.sendFile(path.join(__dirname, "views/index.html"));
-  res.render("index", { title: "Main" });
-});
+const views = [
+  { path: "/", view: "inicio" },
+  { path: "/contacto", view: "contacto" },
+  { path: "/ayuda", view: "ayuda" },
+];
 
-//Contact
-// routes.get("/contact", (req, res) => {
-//   res.render("contact", { title: "Main" });
-// });
+const title = "main";
+
+views.forEach(({ path, view }) => {
+  routes.get(path, (req, res) => res.render(view, { title }));
+});
 
 module.exports = routes;
