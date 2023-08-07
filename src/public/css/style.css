@@ -11,9 +11,20 @@
     position: fixed;
     top: 0;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background: var(--color-primary);
 
     transition: all .5s;
+}
+.header .container {
+    width: var(--width-max);
+}
+.header .container .h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 /* Menu --------------------------------------------------------------------- */
 .nav {
@@ -36,11 +47,17 @@
     transition: all .5s;
 }
 .nav .ul {
+    height: 100%;
+
     display: flex;
     gap: 1rem;
 }
 .nav .ul .li {
-    padding: .1rem;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
     border: solid .3rem transparent;
 }
 .nav .ul .activo {
