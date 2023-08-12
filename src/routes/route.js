@@ -1,5 +1,5 @@
-const express = require("express");
-const routes = express.Router();
+import { Router } from "express";
+const routes = Router();
 
 const views = [
   { path: "/", view: "inicio" },
@@ -13,4 +13,4 @@ views.forEach(({ path, view }) => {
   routes.get(path, (req, res) => res.render(view, { title }));
 });
 
-module.exports = routes;
+export default routes;

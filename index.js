@@ -1,8 +1,12 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import { fileURLToPath } from "url";
+import path from "path";
+import routes from "./src/routes/route.js";
 
 const server = express();
-const PORT = 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const PORT = process.env.PORT || 3000;
 
 // Settings
 server.set("port", PORT);
@@ -13,10 +17,11 @@ server.set("view engine", "ejs");
 server.disable('x-powered-by');
 
 // Static files
-server.use(express.static(path.join(__dirname, "src/public")));
+const publicDirectory = path.join(__dirname, "src/public");
+server.use(express.static(publicDirectory));
 
 // Routers
-server.use(require("./src/routes/route"));
+server.use(routes);
 
 // Listening the server
 server.listen(PORT, () => {
